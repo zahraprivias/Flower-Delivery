@@ -7,7 +7,7 @@ Quiz for Database course. Demonstrates ability in DDL and DML such as CREATE TAB
 <img src="https://github.com/zahraprivias/Flower-Delivery/blob/main/ERD.PNG" alt="Image" width="490" height="420">  
 
 ## Case  
-1. Create a table named **DeliveryType** with the following description:  
+1) Create a table named **DeliveryType** with the following description:  
 Field Name | Data Type | Length | Notes  
 --- | --- | --- | ---  
 DeliveryID | CHAR | 6 | Primary key. DeliveryID  must be started with ‘DLR’ and followed by 3 characters of number. Example: DLR001  
