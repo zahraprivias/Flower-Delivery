@@ -35,7 +35,7 @@ CREATE TABLE DeliveryType (
 	DeliveryCost INT NOT NULL
 )
 ```  
-2. 
+2. Add a new column on **Staff** named Salary with int data type. Then delete the column.  
 ```sql
 ALTER TABLE Staff
 ADD Salary INT
@@ -43,12 +43,12 @@ ADD Salary INT
 ALTER TABLE Staff
 DROP COLUMN Salary
 ```  
-3. 
+3. Insert the following data into **Staff** table.  
 ```sql
 INSERT INTO Staff(StaffID, StaffName, StaffGender, StaffDOB, StaffPosition, StaffEmail, StaffAddress, StaffPhone) VALUES
 ('STF008', 'Agus Sasmito', 'Male', '1989-12-29', 'Driver', 'ajustgaus@sasa.com', 'Graha Medika Street no 188 Jakarta', '0810178')
 ```  
-4. 
+4. Display FlowerID, FlowerName, FlowerColor, FlowerType, and Price for every flower which name start with ‘P’.  
 ```sql
 SELECT FlowerID, FlowerName, FlowerColor, FlowerType, Price
 FROM Flower
@@ -56,14 +56,14 @@ WHERE FlowerName LIKE 'P%'
 ```  
 Result:  
 <img width="256" alt="No 4" src="https://user-images.githubusercontent.com/96785017/187067027-c466e884-b417-4369-969c-87369cdaf954.PNG">  
-5. 
+5. Update **AdditionalRequest** for every transaction that occurred on the 6th day into ‘Ribbon’.  
 ```sql
 UPDATE DetailTransaction
 SET AdditionalReq = 'Ribbon'
 FROM DetailTransaction dt, HeaderTransaction ht
 WHERE dt.TransactionID = ht.TransactionID AND DAY(TransactionDate) = 6
 ```  
-6. 
+6. Create view named StaffView to display StaffID, StaffName, Gender, and StaffPosition for every Staff whose position is ‘Florist’.  
 ```sql
 CREATE VIEW StaffView
 AS
@@ -76,7 +76,7 @@ AS
 	WHERE StaffPosition = 'Florist'
 GO
 ```  
-7. 
+7. Display FlowerName, Flower Type, and Price for every flower which was sold without using Card as an additional Request.  
 ```sql
 SELECT 
 	FlowerName,
@@ -92,7 +92,7 @@ WHERE FlowerID IN (
 Result:  
 <img width="180" alt="No 7" src="https://user-images.githubusercontent.com/96785017/187067254-a41062e9-ca0a-4a9f-821d-49235ded65a1.PNG">  
 
-8. 
+8. Display Customer Name, Customer Phone, Transaction Date, Transaction Day, and Transaction Count for every customer that has done a transaction with staff which ID is ‘STF005’ and at branch which ID is ‘BN005’. Then combine it with Customer Name, Customer Phone, Transaction Date, Transaction Day, and Transaction Count for every female customer that has done a transaction with staff which ID is ‘STF001’.  
 ```sql
 SELECT
 	[Customer Name] = 'Mr. ' + CustomerName,
@@ -121,7 +121,7 @@ GROUP BY CustomerName, CustomerPhone, TransactionDate
 Result:  
 <img width="388" alt="No 8" src="https://user-images.githubusercontent.com/96785017/187067284-36a22daa-9762-4560-b2d9-ff43aeb25591.PNG">  
 
-9. 
+9. Display TransactionID, FlowerName, Transaction Count, and Remaining Date for every transactions which done by staff which ID is ‘STF002’ and was located at branch which ID is ‘BN001’.  
 ```sql
 SELECT 
 	ht.TransactionID,
@@ -138,7 +138,7 @@ GROUP BY ht.TransactionID, f.FlowerName, TransactionDate
 Result:  
 <img width="279" alt="No 9" src="https://user-images.githubusercontent.com/96785017/187067272-ccc63a72-1c45-43a9-9b35-c42a46db2e59.PNG">  
 
-10. 
+10. Display Branch, Remaining Date, and Delivery Cost for every Transaction for every transaction which sold a flower which price is higher than average value of flower price and Branch name starts with ‘L’.  
 ```sql
 SELECT
 	[Branch] = BranchName,
