@@ -2,6 +2,9 @@
 Quiz for Database course. Demonstrates ability in DDL and DML such as CREATE TABLE, ALTER TABLE, INSERT, UPDATE, SELECT, and CREATE VIEW.
 
 ## Table of Contents
+  * [Relational Table](#relational-table)
+  * [Case](#case)
+  * [Solution](#solution)
 
 ## Relational Table
 <img src="https://github.com/zahraprivias/Flower-Delivery/blob/main/ERD.PNG" alt="Image" width="490" height="420">  
@@ -156,5 +159,5 @@ WHERE
 	b.BranchName LIKE 'L%'
 GROUP BY BranchName, TransactionDate, Price
 ``` 
-Result: 
+Result:  
 <img width="184" alt="No 10" src="https://user-images.githubusercontent.com/96785017/187067265-d376d534-eb5e-41fb-9136-64872451f0a5.PNG">
