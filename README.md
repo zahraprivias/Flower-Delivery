@@ -25,4 +25,39 @@ DeliveryCost | INT | - | Can't be empty.
 10. Display Branch (obtained from BranchName), Remaining Date (obtained from the day difference between TransactionDate and 1st April 2016), and Delivery Cost (obtained by adding ‘Rp. ’ in front of Price) for every Transaction for every transaction which sold a flower which price is higher than average value of flower price and Branch name starts with ‘L’.  
 
 ## Solution
+First, import the database Flower Delivery from **create+insert.sql**  
+
+1. Create a table named **DeliveryType**
+```sql
+CREATE TABLE DeliveryType (
+	DeliveryID CHAR(6) PRIMARY KEY CHECK(DeliveryID LIKE 'DLR[0-9][0-9][0-9]'),
+	DeliveryTypeName VARCHAR(50) NOT NULL CHECK(DeliveryTypeName LIKE 'Regular' OR DeliveryTypeName LIKE 'Express'),
+	DeliveryCost INT NOT NULL
+)
+```  
+2. 
+```sql
+ALTER TABLE Staff
+ADD Salary INT
+
+ALTER TABLE Staff
+DROP COLUMN Salary
+```  
+3. 
+```sql
+INSERT INTO Staff(StaffID, StaffName, StaffGender, StaffDOB, StaffPosition, StaffEmail, StaffAddress, StaffPhone) VALUES
+('STF008', 'Agus Sasmito', 'Male', '1989-12-29', 'Driver', 'ajustgaus@sasa.com', 'Graha Medika Street no 188 Jakarta', '0810178')
+```  
+4. 
+```sql
+SELECT FlowerID, FlowerName, FlowerColor, FlowerType, Price
+FROM Flower
+WHERE FlowerName LIKE 'P%'
+```  
+5. 
+```sql
+SET AdditionalReq = 'Ribbon'
+FROM DetailTransaction dt, HeaderTransaction ht
+WHERE dt.TransactionID = ht.TransactionID AND DAY(TransactionDate) = 6
+```
 
