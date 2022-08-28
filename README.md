@@ -13,5 +13,11 @@ Field Name | Data Type | Length | Notes
 --- | --- | --- | ---  
 DeliveryID | CHAR | 6 | Primary key. DeliveryID  must be started with ‘DLR’ and followed by 3 characters of number. Example: DLR001  
 DeliveryTypeName | VARCHAR | 50 | Can’t be empty and DeliveryTypeName must be between ‘Regular’ or ‘Express’  
-DeliveryCost | INT | - | Can't be empty.
+DeliveryCost | INT | - | Can't be empty.  
+2. Add a new column on **Staff** named Salary with int data type. Then delete the column.  
+3. Insert the following data into **Staff** table.  
+4. Display FlowerID, FlowerName, FlowerColor, FlowerType, and Price for every flower which name start with ‘P’.  
+5. Update **AdditionalRequest** for every transaction that occurred on the 6th day into ‘Ribbon’.  
+
+## Solution
 
