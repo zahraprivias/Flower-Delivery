@@ -54,10 +54,105 @@ SELECT FlowerID, FlowerName, FlowerColor, FlowerType, Price
 FROM Flower
 WHERE FlowerName LIKE 'P%'
 ```  
+Result:  
+<img width="256" alt="No 4" src="https://user-images.githubusercontent.com/96785017/187067027-c466e884-b417-4369-969c-87369cdaf954.PNG">  
 5. 
 ```sql
+UPDATE DetailTransaction
 SET AdditionalReq = 'Ribbon'
 FROM DetailTransaction dt, HeaderTransaction ht
 WHERE dt.TransactionID = ht.TransactionID AND DAY(TransactionDate) = 6
-```
+```  
+6. 
+```sql
+CREATE VIEW StaffView
+AS
+	SELECT 
+	StaffID, 
+	StaffName, 
+	[Gender] = LEFT(StaffGender, 1), 
+	StaffPosition
+	FROM Staff
+	WHERE StaffPosition = 'Florist'
+GO
+```  
+Result:  
 
+7. 
+```sql
+SELECT 
+	FlowerName,
+	[Flower Type] = UPPER(FlowerType),
+	Price
+FROM Flower
+WHERE FlowerID IN (
+	SELECT FlowerID
+	FROM DetailTransaction
+	WHERE AdditionalReq != 'Card'
+)
+```
+Result:  
+
+8. 
+```sql
+SELECT
+	[Customer Name] = 'Mr. ' + CustomerName,
+	[Customer Phone] = CustomerPhone,
+	[Transaction Date] = CONVERT(VARCHAR, TransactionDate, 106),
+	[Transaction Day] = DATENAME(WEEKDAY, TransactionDate),
+	[Transaction Count] = COUNT(TransactionID)
+FROM Customer c, HeaderTransaction ht
+WHERE 
+	c.CustomerID = ht.CustomerID AND 
+	StaffID = 'STF005' AND BranchID = 'BN005'
+GROUP BY CustomerName, CustomerPhone, TransactionDate
+UNION
+SELECT
+	[Customer Name] = 'Ms. ' + CustomerName,
+	[Customer Phone] = CustomerPhone,
+	[Transaction Date] = CONVERT(VARCHAR, TransactionDate, 106),
+	[Transaction Day] = DATENAME(WEEKDAY, TransactionDate),
+	[Transaction Count] = COUNT(TransactionID)
+FROM Customer c, HeaderTransaction ht
+WHERE 
+	c.CustomerID = ht.CustomerID AND 
+	StaffID = 'STF001' AND CustomerGender = 'Female'
+GROUP BY CustomerName, CustomerPhone, TransactionDate
+```  
+Result:  
+
+9. 
+```sql
+SELECT 
+	ht.TransactionID,
+	f.FlowerName,
+	[Transaction Count] = CAST(COUNT(ht.TransactionID) AS VARCHAR) + ' Times',
+	[Remaining Date] = DATEDIFF(DAY, '2016/04/01', TransactionDate)
+FROM 
+	Flower f JOIN DetailTransaction dt ON f.FlowerID = dt.FlowerID JOIN
+	HeaderTransaction ht ON dt.TransactionID = ht.TransactionID
+WHERE
+	StaffID = 'STF002' AND BranchID ='BN001'
+GROUP BY ht.TransactionID, f.FlowerName, TransactionDate
+```  
+Result:  
+
+10. 
+```sql
+SELECT
+	[Branch] = BranchName,
+	[Remaining Date] = DATEDIFF(DAY, '2016/04/01', TransactionDate),
+	[Delivery Cost] = 'Rp ' + CAST(Price AS VARCHAR)
+FROM 
+	Branch b JOIN HeaderTransaction ht ON b.BranchID = ht.BranchID JOIN
+	DetailTransaction dt ON ht.TransactionID = dt.TransactionID JOIN
+	Flower f ON dt.FlowerID = f.FlowerID,(
+	SELECT [Avg Price] = AVG(Price)
+	FROM Flower
+	) AS AvgPrice
+WHERE 
+	Price > AvgPrice.[Avg Price] AND
+	b.BranchName LIKE 'L%'
+GROUP BY BranchName, TransactionDate, Price
+``` 
+Result: 
