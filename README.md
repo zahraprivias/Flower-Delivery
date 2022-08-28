@@ -76,8 +76,6 @@ AS
 	WHERE StaffPosition = 'Florist'
 GO
 ```  
-Result:  
-
 7. 
 ```sql
 SELECT 
@@ -92,6 +90,7 @@ WHERE FlowerID IN (
 )
 ```
 Result:  
+<img width="180" alt="No 7" src="https://user-images.githubusercontent.com/96785017/187067254-a41062e9-ca0a-4a9f-821d-49235ded65a1.PNG">  
 
 8. 
 ```sql
@@ -120,6 +119,7 @@ WHERE
 GROUP BY CustomerName, CustomerPhone, TransactionDate
 ```  
 Result:  
+<img width="388" alt="No 8" src="https://user-images.githubusercontent.com/96785017/187067284-36a22daa-9762-4560-b2d9-ff43aeb25591.PNG">  
 
 9. 
 ```sql
@@ -136,6 +136,7 @@ WHERE
 GROUP BY ht.TransactionID, f.FlowerName, TransactionDate
 ```  
 Result:  
+<img width="279" alt="No 9" src="https://user-images.githubusercontent.com/96785017/187067272-ccc63a72-1c45-43a9-9b35-c42a46db2e59.PNG">  
 
 10. 
 ```sql
@@ -156,3 +157,4 @@ WHERE
 GROUP BY BranchName, TransactionDate, Price
 ``` 
 Result: 
+<img width="184" alt="No 10" src="https://user-images.githubusercontent.com/96785017/187067265-d376d534-eb5e-41fb-9136-64872451f0a5.PNG">
